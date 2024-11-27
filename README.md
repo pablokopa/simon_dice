@@ -7,8 +7,8 @@
 - [Introducción](#introducción)
 - [Estructura básica del código](#estructura-básica-del-código)
 - [Explicación general del código](#explicación-general-del-código)
-    - [1. Uso del esquema MVVM (Model-View-ViewModel)](#1-uso-del-esquema-mvvm-model-view-viewmodel)
-    - [2. Uso del patrón de diseño Observer y corutinas](#2-uso-del-patrón-de-diseño-observer-y-corutinas)
+    - [1. Uso del esquema MVVM)](#1-uso-del-esquema-mvvm)
+    - [2. Uso del patrón Observer y corutinas](#2-uso-del-patron-observer-y-corutinas)
         - [Patrón Observer](#patrón-observer)
         - [Corutinas](#corutinas)
     - [3. Uso de Estados en el programa](#3-uso-de-estados-en-el-programa)
@@ -28,7 +28,7 @@ Mi programa está dividido en las siguientes clases:
 - **`Datos.kt`**: En Datos se almacenan los datos compartidos entre todas las clases.
 
 ## Explicación general del código
-### 1. Uso del esquema MVVC (Model-View-ViewModel).
+### 1. Uso del esquema MVVM.
 En este caso creo que sigo el patrón **MVVM** bastante bien:
 
 1. **Model**: Representa los **datos de la aplicación**. En mi caso, la clase `Datos.kt` actúa como el **modelo**, almacenando datos globales del juego como el número de rondas y el color aleatorio actual.
@@ -39,7 +39,7 @@ En este caso creo que sigo el patrón **MVVM** bastante bien:
 
 Este patrón de diseño es muy útil, ya que asegura una separación clara de las funcionalidades, facilitando el mantenimiento y la escalabilidad de la aplicación.
 
-### 2. Uso del patron de diseño Observer y corutinas.
+### 2. Uso del patron Observer y corutinas.
 #### Patrón Observer
 El patrón Observer lo utilizo a través de `LiveData` en la clase `ModelView.kt`.
 
@@ -135,6 +135,16 @@ estadoLiveData.value = Estados.ADIVINANDO
     - Al presionar un botón de color, se llama a la función `verificarColor()` en el `ViewModel`, que verifica si el color seleccionado es correcto o no.
     - Si el jugador acierta toda la secuencia, se incrementa el contador de rondas y se agrega un nuevo color a la secuencia, volviendo al estado `GENERANDO`.
     - Si el jugador se equivoca, el estado vuelve a `INICIO` y el juego se reinicia.
+
+## Imagenes del funcionamiento
+![image](https://github.com/user-attachments/assets/bc0b4617-0a64-47f8-81b5-a096c962eab3) ![image](https://github.com/user-attachments/assets/d5a318c3-7f78-4875-ade9-85cd15196f8c)
+
+![image](https://github.com/user-attachments/assets/19861fee-75c8-451a-b3b9-6d35f9fd604e) ![image](https://github.com/user-attachments/assets/77b3602c-722f-467c-9b9b-2716b4c63a72)
+
+1. La **imagen de arriba izquierda** muestra como es el juego antes de pulsar el botón de START (todos los botones bloqueados excepto el de START).
+2. La **siguiente imagen (arriba derecha)**, muestra el juego ya iniciado, cuando pide que adivines el color (que en está caso es el azul (el color se enseña solamente durante 1 segundo)). Aquí ya está el botón de START bloqueado y solamente se pueden pulsar los botones de colores.
+3. La **siguiente imagen (abajo izquierda)**, muestra que cuando se adivina el color nos manda un mensaje indicando que es correcto e inicia automáticamente la siguiente secuencia de colores.
+4. La **última imágen (abajo derecha)**, muestra lo que ocurre cuando se falla: nos indica un mensaje de que es incorrecto y que hemos perdido, vuelve a desbloquear el botón START (para iniciar de nuevo el juego) y a bloquear los botones de colores. También muestra el número de rondas que hemos hecho hasta que se haga click de nuevo en el botón de START, lo que provocará que se reinicien las rondas y genere una nueva secuencia de colores.
 
 ## Elementos que añadiría a futuro
 - Antes de nada me encargaría de pulir el juego actual para dejarlo perfectamente ya de base.
