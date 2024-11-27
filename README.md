@@ -13,6 +13,7 @@
         - [Corutinas](#corutinas)
     - [3. Uso de Estados en el programa](#3-uso-de-estados-en-el-programa)
 - [Funcionamiento del juego](#funcionamiento-del-juego)
+- [Imagenes del funcionamiento](#imagenes-del-funcionamiento)
 - [Elementos que añadiría a futuro](#elementos-que-añadiría-a-futuro)
 
 
